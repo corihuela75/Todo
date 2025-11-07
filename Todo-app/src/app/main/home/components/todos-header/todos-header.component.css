@@ -1,0 +1,17 @@
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: var(--color5);
+  color: var(--text-w);
+  padding: 20px 10px;
+}
+.title {
+  width: fit-content;
+  font-size: 1.5rem;
+  margin: 0;
+  display: inline-flex;
+}
+.btn{
+  width: 25%;
+}

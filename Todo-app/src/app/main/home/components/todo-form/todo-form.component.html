@@ -1,0 +1,103 @@
+<form class="form" [formGroup]="todoForm" >
+  <h1 class="title">{{ data ? "Actualizar tarea" : "Nueva tarea" }}</h1>
+
+  <mat-form-field
+    appearance="outline"
+    class="container_textarea"
+    hintLabel="De 10 a 100 caracteres"
+  >
+    <mat-label> Título </mat-label>
+    <textarea
+      class="textarea title"
+      matInput
+      formControlName="title"
+      #title
+      maxlength="100"
+      placeholder="Título"
+    >
+    </textarea>
+    <mat-hint align="end">{{ title.value.length }}/100</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field
+    appearance="outline"
+    class="container_textarea description"
+    hintLabel="De 20 a 200 caracteres"
+  >
+    <mat-label> Descripción </mat-label>
+    <textarea
+      class="textarea description"
+      matInput
+      formControlName="description"
+      #description
+      maxlength="200"
+      placeholder="Descripción"
+    >
+    </textarea>
+    <mat-hint align="end">{{ description.value.length }}/200</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form_field">
+    <mat-label>Prioridad</mat-label>
+    <mat-select formControlName="priority">
+      <mat-option value="HIGH">Alta</mat-option>
+      <mat-option value="MEDIUM">Media</mat-option>
+      <mat-option value="LOW">Baja</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form_field">
+    <mat-label>Fecha expiración</mat-label>
+    <input formControlName="expiration" matInput [matDatepicker]="picker" />
+    <mat-hint>YYYY/MM/DD</mat-hint>
+    <mat-datepicker-toggle
+      matSuffix
+      class="icon_calendar"
+      matIconSuffix
+      [for]="picker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-radio-group formControlName="state" appearance="outline" class="form_field">
+    <mat-radio-button
+      value="PENDING"
+      [checked]="todoForm.controls['state'].value === 'PENDING'"
+      >PENDING</mat-radio-button
+    >
+    <mat-radio-button
+      color="primary"
+      value="DONE"
+      [checked]="todoForm.controls['state'].value === 'DONE'"
+      >DONE</mat-radio-button
+    >
+  </mat-radio-group>
+
+  <div class="chips_container">
+    <mat-form-field appearance="outline" class="chips_field" hintLabel="Max 15 caracteres">
+      <mat-label>Temas de la tarea</mat-label>
+      <input
+        formControlName="tags"
+        matInput
+        #tag
+        maxlength="15"
+        placeholder="Compras / Hogar"
+      />
+      <mat-icon matSuffix class="send_icon" (click)="addTag(tag.value)" >send</mat-icon>
+      <mat-hint align="end">{{ tag.value.length }}/15</mat-hint>
+    </mat-form-field>
+
+    <mat-chip-set class="chips" appearance="outline" >
+      <mat-chip *ngFor="let chip of chips; let i = index" color="primary"
+        >{{ chip }} <mat-icon class="icon" (click)="deleteChip(i)">clear</mat-icon>
+      </mat-chip>
+    </mat-chip-set>
+
+
+  </div>
+  <div class="buttons">
+    <button mat-stroked-button color="primary" (click)="onSubmit()">Guardar</button>
+    <button mat-button color="accent" (click)="close()">Cancelar</button>
+  </div>
+
+</form>

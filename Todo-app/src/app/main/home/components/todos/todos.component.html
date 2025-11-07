@@ -1,0 +1,61 @@
+<app-todos-header></app-todos-header>
+
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="table">
+
+    <ng-container matColumnDef="title">
+      <th class="titles title" mat-header-cell *matHeaderCellDef> Titulo </th>
+      <td mat-cell class="todo_title" *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="priority">
+      <th class="titles priority" mat-header-cell *matHeaderCellDef> Prioridad </th>
+      <td mat-cell class="todo_priority" *matCellDef="let element"> {{element.priority}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="expiration">
+      <th class="titles expiration" mat-header-cell *matHeaderCellDef> Vence </th>
+      <td mat-cell class="todo_expiration" *matCellDef="let element"> {{element.expiration | date: 'mediumDate' }} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="state">
+      <th class="titles state" mat-header-cell *matHeaderCellDef> Estado </th>
+      <td mat-cell class="todo_state" *matCellDef="let element">
+        <button mat-stroked-button (click)="changeStatus(element)" [color]="colors[element.state]">{{element.state}} </button>
+      </td>
+    </ng-container>
+
+        <!-- Symbol Column -->
+    <ng-container matColumnDef="menu">
+      <th class="titles menu" mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell class="todo_menu" *matCellDef="let element">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label>
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="editTodo(element)">
+            <mat-icon>edit</mat-icon>
+            <span>Editar</span>
+          </button>
+          <button mat-menu-item (click)="deleteTodo(element.uid)" >
+            <mat-icon>delete</mat-icon>
+            <span>Eliminar</span>
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="todo_row" ></tr>
+
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 5, 20]"
+                 showFirstLastButtons>
+  </mat-paginator>
+</div>
+ngh --dir dist/todo-app

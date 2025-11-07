@@ -1,0 +1,32 @@
+div.mat-elevation-z8,table,thead,tbody, tr {
+  width: 100%;
+}
+table.table{
+  table-layout: fixed;
+}
+
+.title,.todo_title{
+  width: 59%;
+}
+
+.priority,.todo_priority,
+.expiration,.todo_expiration,
+.state, .todo_state {
+    width: 12%;
+}
+
+th.titles{
+  text-align: center;
+  font-size: 1.2rem;
+}
+th.titles, td{
+  text-align: center;
+}
+
+.todo_title{
+  padding-left: 1%;
+  text-align: left;
+}
+.menu, .todo_menu {
+  width: 5%;
+}

@@ -1,0 +1,60 @@
+.form {
+  column-gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px auto 0;
+  padding: 30px;
+  row-gap: 20px;
+}
+.title {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.379);
+  margin: 0;
+  width: 100%;
+}
+.container_textarea {
+  width: 45%;
+}
+.chips_container {
+  column-gap: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+.chips_field {
+  min-width: 180px;
+}
+.chips {
+  align-items: center;
+  border-radius: 5px;
+  display: flex;
+  min-width: 50%;
+  outline: 1px solid rgba(0, 0, 0, 0.38);
+  padding: 10px;
+  width: fit-content;
+}
+.mdc-evolution-chip__text-label {
+  align-items: center;
+}
+.send_icon{
+  cursor: pointer;
+  margin-right: 5px;
+}
+.send_icon:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 50%;
+}
+.icon {
+  cursor: pointer;
+  margin-right: -5px;
+  padding: 2px;
+  scale: 0.8;
+  vertical-align: middle;
+}
+.buttons {
+  column-gap: 15px;
+  display: flex;
+  margin-top: 15px;
+}

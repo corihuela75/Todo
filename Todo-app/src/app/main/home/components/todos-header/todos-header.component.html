@@ -1,0 +1,14 @@
+<header class="header" >
+  <h1 class="title">Todo App</h1>
+  <button mat-raised-button color="primary"
+  class="btn" (click)="openDialog()"
+  > Add new todo</button>
+  <div>
+    Filtrar por:
+  <button mat-raised-button color="primary"
+   (click)="changeFilterStatus()"
+  > Estado: {{state}} </button>
+</div>
+</header>
+
+
