@@ -13,3 +13,5 @@ feature/api-inicial	docs: Actualizar el README con instrucciones iniciales del b
 Push
 
 feature/crud-completo	feat(controlador): Implementar la lógica para actualizar y eliminar tareas por UID.	src/controllers/todo.controller.ts
+feature/crud-completo	feat(controlador): Añadir endpoint para obtener una tarea específica por UID.	src/controllers/todo.controller.ts
+
