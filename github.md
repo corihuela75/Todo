@@ -18,4 +18,9 @@ feature/crud-completo	feat(rutas): Configurar rutas PUT, DELETE y GET con el par
 feature/crud-completo	fix(modelo): Establecer el valor por defecto 'PENDING' para el estado de la tarea.	src/models/todo.model.ts
 feature/crud-completo	style: Aplicar formato de código consistente en el controlador de tareas.	src/controllers/todo.controller.ts
 feature/crud-completo	test(integración): Probar la actualización exitosa de una tarea existente.	tests/todo.integration.test.ts
-feature/crud-completo	chore: Añadir archivo de ejemplo para variables de entorno (configuración DB).	.env.example
+feature/crud-completo	chore: Añadir archivo de ejemplo para variables de entorno (configuración DB).	.env.examplegit 
+
+
+Push
+
+feature/preparacion-seguridad	feat(seguridad): Integrar middleware Helmet para cabeceras de seguridad básicas.	server.ts
