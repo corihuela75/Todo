@@ -24,3 +24,4 @@ feature/crud-completo	chore: Añadir archivo de ejemplo para variables de entorn
 Push
 
 feature/preparacion-seguridad	feat(seguridad): Integrar middleware Helmet para cabeceras de seguridad básicas.	server.ts
+feature/preparacion-seguridad	refactor: Crear un stub de middleware de autenticación.	src/middlewares/auth.middleware.ts
