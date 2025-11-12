@@ -27,3 +27,4 @@ feature/preparacion-seguridad	feat(seguridad): Integrar middleware Helmet para c
 feature/preparacion-seguridad	refactor: Crear un stub de middleware de autenticación.	src/middlewares/auth.middleware.ts
 feature/preparacion-seguridad	feat(modelo): Añadir campo 'propietario' (owner) a la tarea (placeholder para ID de usuario).	src/models/todo.model.ts
 feature/preparacion-seguridad	style: Normalizar la forma de importar módulos en los controladores.	src/controllers/todo.controller.ts
+feature/preparacion-seguridad	fix(rutas): Aplicar el middleware de autenticación stub a la ruta POST /todos.	src/routes/todo.routes.ts
