@@ -22,8 +22,8 @@ Permite gestionar tareas (todos), incluyendo crear, listar, actualizar y elimina
 Clonar el repositorio:
 
 ```bash
-git clone <url-del-repo>
-cd backend
+git clone https://github.com/corihuela75/Todo.git
+cd Todo-app-back
 ```
 
 Instalar dependencias:
