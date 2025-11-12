@@ -9,3 +9,7 @@ Push
 feature/api-inicial	fix(controlador): Asegurar el uso de UID único para cada nueva tarea.	src/controllers/todo.controller.ts
 feature/api-inicial	test(unitario): Añadir prueba de unidad para la creación del modelo Todo.	tests/todo.model.test.ts
 feature/api-inicial	docs: Actualizar el README con instrucciones iniciales del backend.	README.md
+
+Push
+
+feature/crud-completo	feat(controlador): Implementar la lógica para actualizar y eliminar tareas por UID.	src/controllers/todo.controller.ts
