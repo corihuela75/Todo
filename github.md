@@ -18,4 +18,14 @@ feature/crud-completo	feat(rutas): Configurar rutas PUT, DELETE y GET con el par
 feature/crud-completo	fix(modelo): Establecer el valor por defecto 'PENDING' para el estado de la tarea.	src/models/todo.model.ts
 feature/crud-completo	style: Aplicar formato de código consistente en el controlador de tareas.	src/controllers/todo.controller.ts
 feature/crud-completo	test(integración): Probar la actualización exitosa de una tarea existente.	tests/todo.integration.test.ts
-feature/crud-completo	chore: Añadir archivo de ejemplo para variables de entorno (configuración DB).	.env.example
+feature/crud-completo	chore: Añadir archivo de ejemplo para variables de entorno (configuración DB).	.env.examplegit 
+
+
+Push
+
+feature/preparacion-seguridad	feat(seguridad): Integrar middleware Helmet para cabeceras de seguridad básicas.	server.ts
+feature/preparacion-seguridad	refactor: Crear un stub de middleware de autenticación.	src/middlewares/auth.middleware.ts
+feature/preparacion-seguridad	feat(modelo): Añadir campo 'propietario' (owner) a la tarea (placeholder para ID de usuario).	src/models/todo.model.ts
+feature/preparacion-seguridad	style: Normalizar la forma de importar módulos en los controladores.	src/controllers/todo.controller.ts
+feature/preparacion-seguridad	fix(rutas): Aplicar el middleware de autenticación stub a la ruta POST /todos.	src/routes/todo.routes.ts
+feature/preparacion-seguridad	test(unitario): Prueba que el middleware de auth rechace peticiones sin token.	tests/auth.middleware.test.ts
