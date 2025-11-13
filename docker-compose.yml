@@ -1,0 +1,32 @@
+services:
+  # mongo:
+  #   image: mongo:6
+  #   container_name: mongodb
+  #   ports:
+  #     - "27017:27017"
+  #   volumes:
+  #     - mongo-data:/data/db
+
+  backend:
+    build: ./Todo-app-back
+    container_name: todo-back
+    ports:
+      - "3000:3000"
+    # depends_on:
+    #   - mongo
+    env_file:
+      - ./Todo-app-back/.env
+    volumes:
+      - ./Todo-app-back:/app
+    command: npm run dev
+
+  frontend:
+    build: ./Todo-app
+    container_name: Todo-app
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+
+volumes:
+  mongo-data:
