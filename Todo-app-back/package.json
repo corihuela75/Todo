@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/app.ts"
+    "test": "jest --runInBand --coverage --verbose",
+    "test:unit": "jest --testPathPatterns=tests/unit --coverage",
+    "test:int": "jest --testPathPatterns=tests/integration --runInBand --verbose --coverage",
+    "dev": "nodemon src/server.ts"
   },
   "keywords": [],
   "author": "",
@@ -19,8 +21,14 @@
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.5",
+    "@types/jest": "^30.0.0",
     "@types/node": "^24.10.0",
+    "@types/supertest": "^6.0.3",
+    "jest": "^30.2.0",
+    "mongodb-memory-server": "^10.3.0",
     "nodemon": "^3.1.10",
+    "supertest": "^7.1.4",
+    "ts-jest": "^29.4.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   }
