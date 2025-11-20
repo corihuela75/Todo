@@ -7,6 +7,7 @@
     "build": "ng build --output-path docs --base-href /todo-app",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadless --code-coverage",
     "step1": "ng build --output-path docs --base-href 'https://github.com/Heber-739/Todo-app/'",
     "step2": "npx angular-cli-ghpages --dir dist/todo-app"
   },
