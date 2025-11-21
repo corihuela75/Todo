@@ -22,3 +22,5 @@ mongoose.connect(mongoURI)
 app.use('/api/todos', todoRoutes);
 
 app.listen(PORT, () => console.log('Server running at http://localhost:{PORT}'));
+
+export default app;
