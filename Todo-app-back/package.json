@@ -6,7 +6,7 @@
     "test": "jest --runInBand --coverage --verbose",
     "test:unit": "jest --testPathPatterns=tests/unit --coverage",
     "test:int": "jest --testPathPatterns=tests/integration --runInBand --verbose --coverage",
-    "dev": "nodemon src/server.ts"
+    "dev": "nodemon src/app.ts"
   },
   "keywords": [],
   "author": "",
