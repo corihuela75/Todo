@@ -25,9 +25,9 @@ jobs:
     name: Integración y Construcción (Sube la imagen a GHCR)
     runs-on: ubuntu-latest
 
-  permissions:
-    contents: read
-    packages: write
+    permissions:
+      contents: read
+      packages: write
 
     strategy:
       fail-fast: false
@@ -62,7 +62,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Extraer metadatos Docker
         id: meta
