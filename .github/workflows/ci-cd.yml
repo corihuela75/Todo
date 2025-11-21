@@ -44,8 +44,8 @@ jobs:
           npm install --prefix ./Todo-app-back
           npm install --prefix ./Todo-app
 
-      # - name: Correr Tests Backend
-      #   run: npm test --prefix ./Todo-app-back
+      - name: Correr Tests Backend
+        run: npm test --prefix ./Todo-app-back
 
       - name: Correr Tests Frontend
         run: npm test --prefix ./Todo-app
