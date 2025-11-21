@@ -60,9 +60,9 @@ jobs:
       - name: Login en GHCR
         uses: docker/login-action@v3
         with:
-          registry: ${{ env.REGISTRY }}
+          registry: ghcr.io
           username: ${{ github.actor }}
-          token: ${{ secrets.DOCKER_TOKEN }}
+          password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Extraer metadatos Docker
         id: meta
