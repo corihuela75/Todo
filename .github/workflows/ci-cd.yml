@@ -18,15 +18,18 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  REPO: ${{ github.repository }}
+  BACKEND_IMAGE: ${{ github.repository }}-backend
+  FRONTEND_IMAGE: ${{ github.repository }}-frontend
 
 jobs:
   build-and-test:
-    name: Integración y Construcción (Sube la imagen a GHCR)
+    name: Build, Test y Push a GHCR
     runs-on: ubuntu-latest
 
-    strategy:
-      fail-fast: false
+    permissions:
+      contents: read
+      packages: write
 
     steps:
       - name: Checkout del código
@@ -39,51 +42,91 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Instalar dependencias
-        run: |
-          npm install --prefix ./Todo-app-back
-          npm install --prefix ./Todo-app
+      - name: Instalar dependencias Backend
+        run: npm install --prefix ./Todo-app-back
 
-      - name: Correr Tests Backend
+      - name: Instalar dependencias Frontend
+        run: npm install --prefix ./Todo-app
+
+      - name: Test Backend
         run: npm test --prefix ./Todo-app-back
 
-      - name: Correr Tests Frontend
-        run: npm test --prefix ./Todo-app
+      - name: Test Frontend
+        run: npm run test:ci --prefix ./Todo-app
 
-      - name: Construir Frontend
+      - name: Build Frontend
         run: npm run build --prefix ./Todo-app
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
       - name: Login en GHCR
         uses: docker/login-action@v3
         with:
-          registry: ${{ env.REGISTRY }}
+          registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      - name: Extraer metadatos Docker
-        id: meta
+      ##########################################
+      # METADATA: Etiquetas para backend / frontend
+      ##########################################
+
+      - name: Metadata Backend
+        id: meta_backend
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ env.BACKEND_IMAGE }}
           tags: |
             type=raw,value=${{ github.event.inputs.target_branch || github.ref_name }}-latest
             type=sha,format=short
 
-      - name: Build y Push Docker
+      - name: Metadata Frontend
+        id: meta_frontend
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.FRONTEND_IMAGE }}
+          tags: |
+            type=raw,value=${{ github.event.inputs.target_branch || github.ref_name }}-latest
+            type=sha,format=short
+
+      ##########################################
+      # BUILD + PUSH BACKEND
+      ##########################################
+
+      - name: Build & Push Backend
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./Todo-app-back
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          file: ./Todo-app-back/Dockerfile
+          tags: ${{ steps.meta_backend.outputs.tags }}
+          labels: ${{ steps.meta_backend.outputs.labels }}
 
+      ##########################################
+      # BUILD + PUSH FRONTEND
+      ##########################################
+
+      - name: Build & Push Frontend
+        uses: docker/build-push-action@v5
+        with:
+          context: ./Todo-app
+          push: true
+          file: ./Todo-app/Dockerfile
+          tags: ${{ steps.meta_frontend.outputs.tags }}
+          labels: ${{ steps.meta_frontend.outputs.labels }}
+
+  ###############################################################
+  # JOB DE DESPLIEGUE EN RENDER SOLO AL HACER PUSH A MAIN
+  ###############################################################
   deploy:
     name: Despliegue a Render
     runs-on: ubuntu-latest
     needs: build-and-test
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch' }}
+
+    if: >
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/main' ||
+      github.event_name == 'workflow_dispatch'
 
     steps:
       - name: Despliegue Automático a Render
