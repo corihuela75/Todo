@@ -62,13 +62,13 @@ jobs:
         with:
           driver: docker-container
           buildkitd-flags: --debug
-          
+
       - name: Login en GHCR
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.DOCKER_TOKEN }}
+          password: ${{ secrets.GITHUB_TOKEN }} 
 
       - name: Extraer metadatos Docker
         id: meta
@@ -82,7 +82,8 @@ jobs:
       - name: Build y Push Docker
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: . # El contexto sigue siendo la raíz para que el Dockerfile pueda acceder a las subcarpetas
+          file: ./Todo-app-back/Dockerfile 
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -101,5 +102,6 @@ jobs:
           RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
         run: |
           echo "Disparando despliegue en Render..."
+          # Dispara el webhook de despliegue de Render
           curl -X POST "${{ env.RENDER_DEPLOY_HOOK }}"
           echo "Despliegue enviado con éxito."
