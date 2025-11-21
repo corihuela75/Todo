@@ -41,17 +41,17 @@ jobs:
 
       - name: Instalar dependencias
         run: |
-          npm install --prefix ./backend
-          npm install --prefix ./frontend
+          npm install --prefix ./Todo-app-back
+          npm install --prefix ./Todo-app
 
       - name: Correr Tests Backend
-        run: npm test --prefix ./backend
+        run: npm test --prefix ./Todo-app-back
 
       - name: Correr Tests Frontend
-        run: npm test --prefix ./frontend
+        run: npm test --prefix ./Todo-app
 
       - name: Construir Frontend
-        run: npm run build --prefix ./frontend
+        run: npm run build --prefix ./Todo-app
 
       - name: Login en GHCR
         uses: docker/login-action@v3
