@@ -1,5 +1,5 @@
 import request from "supertest";
-import app from "../../src/server";
+import app from "../../src/app-test";
 import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import Todo from "../../src/models/todo.model";
