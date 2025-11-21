@@ -1,8 +1,7 @@
 // src/controllers/todo.controller.ts
 import Todo from '../models/todo.model';
-import { v4 as uuidv4 } from 'uuid';
 import { Request, Response } from 'express';
-
+import { v4 } from 'uuid';
 
 
 export const getTodos = async (req: Request, res: Response) => {
@@ -19,7 +18,7 @@ export const getTodo = async (req: Request, res: Response) => {
 export const createTodo = async (req: Request, res: Response ) => {
   const newTodo = new Todo({
     ...req.body,
-    uid: uuidv4()
+    uid: v4()
   });
 
   await newTodo.save();
